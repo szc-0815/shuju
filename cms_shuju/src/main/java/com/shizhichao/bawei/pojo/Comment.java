@@ -1,6 +1,6 @@
 package com.shizhichao.bawei.pojo;
 
-public class comment {
+public class Comment {
 
 	private Integer id;
 	private Integer articleId;//文章id
@@ -37,7 +37,7 @@ public class comment {
 	public void setCreated(String created) {
 		this.created = created;
 	}
-	public comment(Integer id, Integer articleId, Integer userId, String content, String created) {
+	public Comment(Integer id, Integer articleId, Integer userId, String content, String created) {
 		super();
 		this.id = id;
 		this.articleId = articleId;
@@ -45,7 +45,7 @@ public class comment {
 		this.content = content;
 		this.created = created;
 	}
-	public comment() {
+	public Comment() {
 		super();
 	}
 	@Override
