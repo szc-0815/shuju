@@ -1,4 +1,4 @@
-package com.shizhichao.bawei.entity;
+package com.shizhichao.bawei.pojo;
 
 import java.util.Date;
 
