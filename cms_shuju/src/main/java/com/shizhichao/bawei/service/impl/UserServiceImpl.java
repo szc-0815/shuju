@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.shizhichao.bawei.dao.ShuDao;
+import com.shizhichao.bawei.dao.ArticleDao;
 import com.shizhichao.bawei.pojo.User;
 import com.shizhichao.bawei.service.UserService;
 @Transactional
@@ -12,7 +12,7 @@ import com.shizhichao.bawei.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private ShuDao dao;
+	private ArticleDao dao;
 	
 	@Override
 	public boolean register(User user) {

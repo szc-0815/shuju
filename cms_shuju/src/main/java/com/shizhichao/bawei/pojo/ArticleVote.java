@@ -1,6 +1,8 @@
 package com.shizhichao.bawei.pojo;
 
-public class Article_vote {
+import java.io.Serializable;
+
+public class ArticleVote implements Serializable{
 
 	private Integer id;
 	private Integer article_id;
@@ -32,14 +34,14 @@ public class Article_vote {
 	public void setOption(String option) {
 		this.option = option;
 	}
-	public Article_vote(Integer id, Integer article_id, Integer user_id, String option) {
+	public ArticleVote(Integer id, Integer article_id, Integer user_id, String option) {
 		super();
 		this.id = id;
 		this.article_id = article_id;
 		this.user_id = user_id;
 		this.option = option;
 	}
-	public Article_vote() {
+	public ArticleVote() {
 		super();
 	}
 	@Override

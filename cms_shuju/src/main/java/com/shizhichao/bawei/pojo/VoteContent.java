@@ -1,6 +1,6 @@
 package com.shizhichao.bawei.pojo;
 
-public class Vote_content {
+public class VoteContent {
 
 	private Integer id;
 	private String content;
@@ -23,13 +23,13 @@ public class Vote_content {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Vote_content(Integer id, String content, String title) {
+	public VoteContent(Integer id, String content, String title) {
 		super();
 		this.id = id;
 		this.content = content;
 		this.title = title;
 	}
-	public Vote_content() {
+	public VoteContent() {
 		super();
 	}
 	@Override
