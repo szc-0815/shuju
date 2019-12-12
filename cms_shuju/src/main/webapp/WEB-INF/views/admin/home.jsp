@@ -24,8 +24,8 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript" src="js/jquery.min.1.12.4.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/cms.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery.min.1.12.4.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/cms.js"></script>
 </body>
 </html>
