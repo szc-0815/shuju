@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</settings>
 <!-- 别名配置 -->
  <typeAliases>
-   <package name="com.shizhichao.bawei.entity"/>
+   <package name="com.shizhichao.bawei.pojo"/>
  </typeAliases>
  
  <!-- 配置分页助手拦截器 -->
