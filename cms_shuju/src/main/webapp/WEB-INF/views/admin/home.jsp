@@ -24,8 +24,8 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript" src="/public/js/jquery.min.1.12.4.js"></script>
-<script type="text/javascript" src="/public/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/public/js/cms.js"></script>
+<script type="text/javascript" src="js/jquery.min.1.12.4.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/cms.js"></script>
 </body>
 </html>
