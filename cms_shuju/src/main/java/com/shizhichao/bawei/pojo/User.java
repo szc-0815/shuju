@@ -135,4 +135,7 @@ public class User implements Serializable{
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+    public boolean isAdmin() {
+    	return "1".equals(getRole());
+    }
 }

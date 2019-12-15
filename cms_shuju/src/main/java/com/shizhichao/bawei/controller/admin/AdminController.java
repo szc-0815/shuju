@@ -1,12 +1,31 @@
 package com.shizhichao.bawei.controller.admin;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.github.pagehelper.PageInfo;
+import com.shizhichao.bawei.pojo.Article;
+import com.shizhichao.bawei.pojo.Channel;
+import com.shizhichao.bawei.pojo.User;
+import com.shizhichao.bawei.service.ArticleService;
+import com.shizhichao.bawei.service.UserService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private ArticleService articleService;
+	
 	/**
 	 * @Title: login   
 	 * @Description: 后台登录   
@@ -48,29 +67,86 @@ public class AdminController {
 	 * @throws
 	 */
 	@RequestMapping("/user")
-	public String user() {
+	public String user(User user,Model model,
+			@RequestParam(value="pageNum",defaultValue="1") int pageNum,@RequestParam(value="pageSize",defaultValue="3") int pageSize) {
+		PageInfo<User> pageInfo = userService.getPageInfo(user,pageNum,pageSize);
+		model.addAttribute("pageInfo", pageInfo);
 		return "admin/user";
 	}
 	/**
+	 * @Title: locked   
+	 * @Description: 禁用用户   
+	 * @param: @param userId
+	 * @param: @return      
+	 * @return: boolean      
+	 * @throws
+	 */
+	@RequestMapping("/user/locked")
+	@ResponseBody
+	public boolean locked(Integer userId) {
+		boolean locked = userService.locked(userId);
+		return locked;
+	}
+	/**
+	 * @Title: unLocked   
+	 * @Description: 启用  
+	 * @param: @param userId
+	 * @param: @return      
+	 * @return: boolean      
+	 * @throws
+	 */
+	@RequestMapping("/user/unLocked")
+	@ResponseBody
+	public boolean unLocked(Integer userId) {
+		boolean locked = userService.unLocked(userId);
+		return locked;
+	}
+	
+	/**
 	 * @Title: article   
-	 * @Description: 文章管理  
+	 * @Description: 文章管理     
+	 * @param: @param article
+	 * @param: @param model
+	 * @param: @param pageNum
+	 * @param: @param pageSize
 	 * @param: @return      
 	 * @return: String      
 	 * @throws
 	 */
 	@RequestMapping("/article")
-	public String article() {
+	public String article(Article article,Model model,
+			@RequestParam(value="pageNum",defaultValue="1") int pageNum,@RequestParam(value="pageSize",defaultValue="3") int pageSize) {
+		PageInfo<Article> pageInfo = articleService.getPageInfo(article,pageNum,pageSize);
+		model.addAttribute("pageInfo", pageInfo);
+		List<Channel> channelList = articleService.getChannelList();
+		model.addAttribute("channelList", channelList);
 		return "admin/article";
 	}
+	
 	/**
-	 * @Title: settings   
-	 * @Description: 系统设置   
+	 * @Title: updateArticleStatus   
+	 * @Description: 修改文章状态   
+	 * @param: @param article
 	 * @param: @return      
-	 * @return: String      
+	 * @return: boolean      
 	 * @throws
 	 */
-	@RequestMapping("/settings")
-	public String settings() {
-		return "admin/settings";
+	@RequestMapping("/article/update/status")
+	@ResponseBody
+	public boolean updateArticleStatus(Article article) {
+		return articleService.updateStatus(article.getId(), article.getStatus());
+	}
+	/**
+	 * @Title: addHot  
+	 * @Description: 文章加热
+	 * @param: @param article
+	 * @param: @return      
+	 * @return: boolean      
+	 * @throws
+	 */
+	@RequestMapping("/article/addHot")
+	@ResponseBody
+	public boolean addHot(Article article) {
+		return articleService.addHot(article.getId());
 	}
 }

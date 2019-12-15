@@ -1,5 +1,6 @@
 package com.shizhichao.bawei.service;
 
+import com.github.pagehelper.PageInfo;
 import com.shizhichao.bawei.pojo.User;
 
 public interface UserService {
@@ -50,4 +51,5 @@ public interface UserService {
 	 * @throws
 	 */
 	int addScore(Integer userId,int score);
+	PageInfo<User> getPageInfo(User user, int pageNum, int pageSize);
 }

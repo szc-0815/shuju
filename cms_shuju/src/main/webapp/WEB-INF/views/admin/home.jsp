@@ -4,8 +4,20 @@
 <html>
 <head>
 <link     href="<%=request.getContextPath() %>/css/bootstrap.min.css"   rel="stylesheet"  type="text/css">
+<link href="<%=request.getContextPath() %>/css/cms.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="<%=request.getContextPath() %>/kindeditor/plugins/code/prettify.css" />
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>cms后台登录</title>
+<script charset="utf-8" src="<%=request.getContextPath() %>/kindeditor/kindeditor-all-min.js"></script>
+<script charset="utf-8" src="<%=request.getContextPath() %>/kindeditor/lang/zh-CN.js"></script>
+<script charset="utf-8" src="<%=request.getContextPath() %>/kindeditor/plugins/code/prettify.js"></script>
+<script>
+	KindEditor.ready(function(K) {});
+</script>
+
 </head>
 <body>
 	
@@ -27,5 +39,6 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery.min.1.12.4.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/cms.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/ajaxfileupload.js"></script>
 </body>
 </html>
