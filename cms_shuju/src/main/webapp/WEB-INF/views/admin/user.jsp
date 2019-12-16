@@ -2,11 +2,12 @@
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   	<form class="form-inline">
 	  <div class="form-group mx-sm-3 mb-2">
-	    <input type="text" name="name" class="form-control" placeholder="请输入登录名">
+	    <input type="text" name="username" class="form-control" placeholder="请输入登录名">
 	  </div>
 	  <div class="form-group mx-sm-3 mb-2">
 	    <input type="text" name="nickname" class="form-control" placeholder="请输入昵称">
 	  </div>
+	  <input type="hidden" name="pageNum" value="${pageInfo.pageNum }">
 	  <button type="button" class="btn btn-primary mb-2" onclick="query()">查询</button>
 	</form>
   
