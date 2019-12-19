@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
   	<form class="form-inline" id="queryForm">
 	  <div class="form-group mx-sm-3 mb-2">
@@ -49,24 +50,22 @@
        <tr>
 	      <th><input type="checkbox" value="${item.id }" name="chk_list"></th>
 	      <th scope="row">${item.id }</th>
-	      <td>${item.title }</td>
+	      <td title="${item.title }">${fn:substring(item.title,0,10) }</td>
 	      <td>${item.channelName }</td>
 	      <td>${item.categoryName }</td>
 	      <td>${item.hot>0?"是":"否"}</td>
-	      <td>${item.status==1?"已审核":item.status==0?"未审核":"审核未通过"}</td>
+	      <td>${item.status==1?"已审核":item.status==0?"未审核":item.status==2?"草稿":"审核未通过"}</td>
 	      <td><fmt:formatDate value="${item.created }" pattern="yyyy-MM-dd HH:mm"/></td>
 	      <td>
-	      	<button type="button" class="btn btn-primary" onclick="check('${item.id}')">审核</button>
-	      	<button type="button" class="btn btn-primary" onclick="addHot('${item.id}')">加热</button>
+	      	<c:if test="${item.status==2 }">
+	      		<button type="button" class="btn btn-primary" onclick="edit('${item.id}')">编辑</button>
+	      	</c:if>
+	      		<button type="button" class="btn btn-primary" onclick="view('${item.id}')">查看</button>
 	      </td>
 	    </tr>
    	</c:forEach>
   </tbody>
 </table>
-<nav aria-label="Page navigation example col-5" style="margin-right: 10px;">
-		<button type="button" class="btn btn-primary" onclick="add();">添加</button>
-		<button type="button" class="btn btn-primary">批删</button>
-</nav>
 <jsp:include page="../common/page.jsp"></jsp:include>
 <div class="alert alert-danger" role="alert" style="display: none"></div>
 
@@ -111,8 +110,8 @@
 		reload(params);
 	}
 	
-	function add(){
-		openPage("/article/add?content1=content");
+	function edit(id){
+		openPage("/article/add?id="+id);
 	}
 	
 	function gotoPage(pageNo){
@@ -120,27 +119,6 @@
 		query();
 	}
 	
-	function addHot(id){
-		$.post("/admin/article/addHot",{id:id},function(res){
-			reload();
-		});
-	}
-	
-	function check(id){
-		$('#checkModal').modal('show');
-		$('#checkForm #id').val(id);
-	}
-	
-	function toCheck(){
-		var data = $('#checkForm').serialize();
-		console.log("data:"+data);
-		$.post("/admin/article/update/status",data,function(res){
-			$('#checkModal').modal('hide');
-			$('.alert').html("审核通过");
-			$('.alert').show();
-			query();
-		});
-	}
 	function view(id){
 		window.open("/article/"+id+".html");
 	}

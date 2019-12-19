@@ -1,5 +1,6 @@
 package com.shizhichao.bawei.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.shizhichao.bawei.dao.ArticleDao;
+import com.shizhichao.bawei.dao.CateGoryDao;
 import com.shizhichao.bawei.dao.ChannelDao;
 import com.shizhichao.bawei.pojo.Article;
+import com.shizhichao.bawei.pojo.Category;
 import com.shizhichao.bawei.pojo.Channel;
 import com.shizhichao.bawei.service.ArticleService;
 @Transactional
@@ -21,6 +24,9 @@ public class ArticleServiceImpl implements ArticleService {
 	private ArticleDao articleDao;
 	@Autowired
 	private ChannelDao channelDao;
+	@Autowired
+	private CateGoryDao categoryDao;
+	
 	
 	@Override
 	public PageInfo<Article> getPageInfo(Article article, int pageNum, int pageSize) {
@@ -42,6 +48,33 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public List<Channel> getChannelList() {
 		return channelDao.select(null);
+	}
+
+	@Override
+	public Article getById(Integer id) {
+		return articleDao.selectById(id);
+	}
+
+	@Override
+	public boolean save(Article article) {
+		if(article.getId()==null) {
+			article.setDeleted(0);
+			article.setCreated(new Date());
+			article.setUpdated(new Date());
+			article.setCommentcnt(0);
+			article.setHits(0);
+			article.setHot(0);
+			articleDao.insert(article);
+		}else {
+			article.setUpdated(new Date());
+			articleDao.update(article);
+		}
+		return false;
+	}
+
+	@Override
+	public List<Category> getCateListByChannelId(Integer channelId) {
+		return categoryDao.selectListByChannelId(channelId);
 	}
 
 }

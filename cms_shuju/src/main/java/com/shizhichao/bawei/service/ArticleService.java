@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.github.pagehelper.PageInfo;
 import com.shizhichao.bawei.pojo.Article;
+import com.shizhichao.bawei.pojo.Category;
 import com.shizhichao.bawei.pojo.Channel;
 
 public interface ArticleService {
@@ -46,4 +47,31 @@ public interface ArticleService {
 	 * @throws
 	 */
 	public List<Channel> getChannelList();
+	/**
+	 * @Title: getById   
+	 * @Description: 根据id查询文章 
+	 * @param: @param id
+	 * @param: @return      
+	 * @return: Article      
+	 * @throws
+	 */
+	public Article getById(Integer id);
+	/**
+	 * @Title: save   
+	 * @Description: 保存或修改文章 
+	 * @param: @param article
+	 * @param: @return      
+	 * @return: boolean      
+	 * @throws
+	 */
+	boolean save(Article article);
+	/**
+	 * @Title: getCateListByChannelId   
+	 * @Description: 根据频道Id查询分类列表  
+	 * @param: @param channelId
+	 * @param: @return      
+	 * @return: List<Category>      
+	 * @throws
+	 */
+	List<Category> getCateListByChannelId(Integer channelId);
 }

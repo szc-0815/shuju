@@ -53,7 +53,7 @@
 			if(res){
 				query();
 			}
-		})
+		}) 
 	}
 	
 	function unLocked(id){
