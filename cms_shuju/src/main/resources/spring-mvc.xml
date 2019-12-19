@@ -6,6 +6,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+	<context:property-placeholder location="classpath:cms.properties"/>
 	<!-- 扫描器 -->
 	<context:component-scan
 		base-package="com.shizhichao.bawei.controller"></context:component-scan>
@@ -25,6 +26,31 @@
 	<!-- 文件上传的处理类 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
-
+	
+	<!-- mvc注解驱动 -->
+	<mvc:annotation-driven conversion-service="conversionService"/>
+	<!-- 日期转换器 -->
+	<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+           <property name="converters">
+               <set>
+                   <bean class="com.shizhichao.bawei.common.StringToDateConverter"></bean>
+               </set>
+           </property>
+    </bean>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**"/>
+			<mvc:exclude-mapping path="/admin/"/>
+			<mvc:exclude-mapping path="/admin/user/login"/>
+			<bean class="com.shizhichao.bawei.common.AuthInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/**"/>
+			<mvc:exclude-mapping path="/user/login"/>
+			<mvc:exclude-mapping path="/user/register"/>
+			<bean class="com.shizhichao.bawei.common.AuthUserInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 
 </beans>

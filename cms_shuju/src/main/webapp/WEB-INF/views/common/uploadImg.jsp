@@ -2,13 +2,13 @@
 <%
 	String feildName = request.getParameter("feildName");
 	String feildValue = request.getParameter("feildValue");
-	feildValue = (feildValue==null || "".equals(feildValue))?"/public/img/upload.jpg":feildValue;
+	feildValue = (feildValue==null || "".equals(feildValue))?"/img/upload.jpg":feildValue;
 %>
 <div class="imgDive">
 	<img src="<%=feildValue %>" class="img-rounded" width="80px;" id="viewImg">
 	<div style="display: none;" id="imageuploadDiv"	name="imageuploadDiv">
 		<input type="file" id="fileName" name="fileName" onchange="ajaxFileUpload(this,'${feild}');"><br> 
-		<input	type="hidden" id="<%=feildName %>" name="<%=feildName %>" value="<%=feildValue=="/public/img/upload.jpg"?null:feildValue %>" isImg=true>
+		<input	type="hidden" id="<%=feildName %>" name="<%=feildName %>" value="<%=feildValue=="/img/upload.jpg"?null:feildValue %>" isImg=true>
 	</div>
 </div>
 <script type="text/javascript">
