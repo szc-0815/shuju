@@ -13,7 +13,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th><input type="checkbox" id="chkAll"></th>
+      <th><input type="checkbox" id="chkALL"></th>
       <th scope="col">#</th>
       <th scope="col">名称</th>
       <th scope="col">URL</th>
@@ -73,7 +73,8 @@
     </div>
   </div>
 </div>
-<script src="/js/checkbox.js"></script>
+<script src="/js/checkbox.js?v=1.0"></script>
+
 <script>
 	var delId = null;
 	//添加
