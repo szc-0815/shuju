@@ -5,6 +5,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import com.github.pagehelper.util.StringUtil;
+import com.shizhichao.bawei.pojo.User;
+import com.shizhichao.bawei.service.UserService;
+
 public class AuthUserInterceptor implements HandlerInterceptor{
 
 	@Override
@@ -14,6 +18,17 @@ public class AuthUserInterceptor implements HandlerInterceptor{
 		if(userInfo!=null) {
 			return true;
 		}
+		
+		//记住登陆
+		String username = CookieUtil.getCookieByName(request, "usename");
+		
+		if(StringUtil.isNotEmpty(username)) {
+			UserService userService = SpringBeanUtils.getBean(UserService.class);
+			userInfo = userService.getByUsername(username);
+			request.getSession().setAttribute(CmsConstant.UserSessionKey,userInfo);
+			return true;
+		}
+		
 	    response.sendRedirect("/user/login");
 		return false;
 	}

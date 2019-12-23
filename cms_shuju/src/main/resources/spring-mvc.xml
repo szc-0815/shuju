@@ -45,9 +45,13 @@
 			<bean class="com.shizhichao.bawei.common.AuthInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
-			<mvc:mapping path="/user/**"/>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/"/>
+			<mvc:exclude-mapping path="/admin/**"/>
+			<mvc:exclude-mapping path="/**/**.html"/>
 			<mvc:exclude-mapping path="/user/login"/>
 			<mvc:exclude-mapping path="/user/register"/>
+			<mvc:exclude-mapping path="/comment/list"/>
 			<bean class="com.shizhichao.bawei.common.AuthUserInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

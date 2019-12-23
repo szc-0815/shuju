@@ -42,7 +42,7 @@ public class AdminUserController {
 		if(userInfo==null) {
 			return JsonResult.fail(1000, "用户名或密码错误");
 		}
-		
+		//禁用判断
 		if(userInfo.getLocked()==1) {
 			return JsonResult.fail(1000, "用户禁用");
 		}
