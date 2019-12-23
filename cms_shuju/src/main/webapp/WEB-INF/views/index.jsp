@@ -28,11 +28,12 @@
 		<c:if test="${USER_SESSION_ID!=null }">
 			<a class="nav-link" href="/user/center">发文</a> 
 			<a class="nav-link" href="/user/center">个人中心</a> 
-			<a class="nav-link" href="/admin//">后台登录</a> 
+			
 			<a class="nav-link" href="javascript:;">${USER_SESSION_ID.nickname }</a>
 			<a class="nav-link" href="/user/logout">退出</a>
 		</c:if>
 		<c:if test="${USER_SESSION_ID==null }">
+			<a class="nav-link" href="/admin//">后台登录</a> 
 			<a class="nav-link" href="/user/login">登录</a>
 		</c:if>
 	</nav>

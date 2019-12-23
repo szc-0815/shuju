@@ -42,10 +42,19 @@ public class AdminUserController {
 		if(userInfo==null) {
 			return JsonResult.fail(1000, "用户名或密码错误");
 		}
+		
+		if(userInfo.getLocked()==1) {
+			return JsonResult.fail(1000, "用户禁用");
+		}
+		
+		
 		//是否管理员
 		if(!userInfo.isAdmin()) {
 			return JsonResult.fail(1000, "权限不够");
 		}
+		
+		
+		
 		//判断密码
 		String string2md5 = CmsMd5Util.string2MD5(user.getPassword());
 		System.out.println(string2md5);
