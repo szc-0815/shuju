@@ -62,7 +62,10 @@
 	      	<button type="button" class="btn btn-primary" onclick="check('${item.id}')">审核</button>
 	      	<button type="button" class="btn btn-primary" onclick="addHot('${item.id}')">加热</button>
 	      	<button type="button" class="btn btn-primary" onclick="view('${item.id}')">查看</button>
-	      	<button type="button" class="btn btn-primary" onclick="jinkan('${item.id}')">禁看</button>
+	      	
+	      	<c:if test="${item.tousuCnt>=3}">
+	      		<button type="button" class="btn btn-primary" onclick="jinkan('${item.id}')">禁看</button>
+	      	</c:if>
 	      </td>
 	    </tr>
    	</c:forEach>

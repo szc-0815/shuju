@@ -5,11 +5,15 @@
 	 <insert id="insert">
 	 	insert into cms_car values
 	 	<foreach collection="list" item="l" separator=",">
-	 		(#{l.shijian},#{l.chepai},#{l.chexing},#{l.jingdu},#{l.weidu})
+	 		(null,#{l.shijian},#{l.chepai},#{l.chexing},#{l.jingdu},#{l.weidu})
 	 	</foreach>
 	 	
 	 	
 	 </insert>
+	
+	<select id="list" resultType="Car">
+		select * from cms_car
+	</select>
 	
 	
 </mapper>

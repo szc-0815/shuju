@@ -13,4 +13,8 @@ public interface CarDao {
 
 	void insert(@Param("list")List<Car> list);
 
+	List<Car> list(Car car);
+
+	
+
 }

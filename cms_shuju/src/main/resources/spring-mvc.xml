@@ -47,6 +47,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<mvc:exclude-mapping path="/"/>
+			<mvc:exclude-mapping path="/car/**"/>
 			<mvc:exclude-mapping path="/admin/**"/>
 			<mvc:exclude-mapping path="/**/**.html"/>
 			<mvc:exclude-mapping path="/**/**.css"/>

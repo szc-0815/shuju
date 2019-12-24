@@ -73,11 +73,16 @@ public class UserController {
 		if(string2md5.equals(userInfo.getPassword())) {
 			session.setAttribute(CmsConstant.UserSessionKey, userInfo);
 			
+			
+			
 			if("1".equals(user.getIsMima())) {
 				int maxAge=1000*60*60*24;
 				CookieUtil.addCookie(response, "username", user.getUsername(), null, null, maxAge);
 				
 			}
+			
+			
+			
 			
 			
 			
@@ -87,7 +92,7 @@ public class UserController {
 	}
 	/**
 	 * @Title: logout   
-	 * @Description: TODO(描述这个方法的作用)   
+	 * @Description: TODO(描述这个方法的作用)   退出
 	 * @param: @param response
 	 * @param: @param session
 	 * @param: @return      
@@ -215,8 +220,8 @@ public class UserController {
 			return JsonResult.sucess();
 		}
 		return JsonResult.fail(CmsConstant.unLoginErrorCode, "未登录");
-		
-		
 	}
+	
+	
 	
 }

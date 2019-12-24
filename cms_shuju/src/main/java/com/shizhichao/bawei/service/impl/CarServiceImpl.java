@@ -9,11 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.shizhichao.bawei.dao.CarDao;
 import com.shizhichao.bawei.pojo.Car;
+import com.shizhichao.bawei.service.CarService;
 import com.shizhichao.utils.FileUtil;
+import com.shizhichao.utils.GeoUtils;
 
 @Transactional
 @Service
-public class CarServiceImpl {
+public class CarServiceImpl implements CarService{
 
 	@Autowired
 	private CarDao carDao;
@@ -33,8 +35,8 @@ public class CarServiceImpl {
 				car.setShijian(split[0]);
 				car.setChepai(split[1]);
 				car.setChexing(split[2]);
-				car.setJingdu(Integer.parseInt(split[3]));
-				car.setWeidu(Integer.parseInt(split[4]));
+				car.setJingdu((double) Integer.parseInt(split[3]));
+				car.setWeidu((double) Integer.parseInt(split[4]));
 				
 				list.add(car);
 			} catch (NumberFormatException e) {
@@ -54,5 +56,24 @@ public class CarServiceImpl {
 		
 		
 	}
+
+
+	@Override
+	public List<Car> list(Car car) {
+		List<Car> list=carDao.list(car);
+		if(car.getJingdu()!=null && car.getWeidu()!=null) {
+			for (Car car2 : list) {
+				Double distance = GeoUtils.getDistance(car2.getJingdu(), car2.getWeidu(), car.getJingdu(), car.getWeidu());
+				car2.setJuli(distance);
+			}
+		}
+		
+		
+		
+		return list;
+	}
+
+
+	
 	
 }
