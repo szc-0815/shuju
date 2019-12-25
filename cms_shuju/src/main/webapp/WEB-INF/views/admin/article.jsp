@@ -63,9 +63,9 @@
 	      	<button type="button" class="btn btn-primary" onclick="addHot('${item.id}')">加热</button>
 	      	<button type="button" class="btn btn-primary" onclick="view('${item.id}')">查看</button>
 	      	
-	      	<c:if test="${item.tousuCnt>=3}">
-	      		<button type="button" class="btn btn-primary" onclick="jinkan('${item.id}')">禁看</button>
-	      	</c:if>
+	      	
+	      	
+	      	
 	      </td>
 	    </tr>
    	</c:forEach>
@@ -149,14 +149,14 @@
 	function view(id){
 		window.open("/article/"+id+".html");
 	}
-	function jinkan(id){
+	function jk(id){
 		$.ajax({
 			url:'/admin/article/update/status',
 			tyep:'post',
 			data:{id:id,status:3},
 			function(res){
 				$('#checkModal').modal('hide');
-				$('.alert').html("已禁止查看");
+				$('.alert').html("jin");
 				$('.alert').show();
 				query();
 				

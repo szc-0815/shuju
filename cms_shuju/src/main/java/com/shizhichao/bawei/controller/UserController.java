@@ -75,11 +75,9 @@ public class UserController {
 			
 			
 			
-			if("1".equals(user.getIsMima())) {
-				int maxAge=1000*60*60*24;
-				CookieUtil.addCookie(response, "username", user.getUsername(), null, null, maxAge);
-				
-			}
+			
+			
+			
 			
 			
 			
@@ -102,7 +100,7 @@ public class UserController {
 	@RequestMapping("logout")
 	public Object logout(HttpServletResponse response,HttpSession session) {
 		session.removeAttribute(CmsConstant.UserSessionKey);
-		CookieUtil.addCookie(response, "username", null, null, null, 0);
+		
 		return "redirect:/";
 	}
 	
@@ -190,20 +188,6 @@ public class UserController {
 		return "user/comment";
 	}
 	
-	@RequestMapping("article")
-	public String article(Article article,Model model,HttpSession session,
-			@RequestParam(value="pageNum",defaultValue="1") int pageNum,@RequestParam(value="pageSize",defaultValue="3") int pageSize) {
-		//设置用户Id
-		User userInfo = (User)session.getAttribute(CmsConstant.UserSessionKey);
-		article.setUserId(userInfo.getId());
-		//查询文章
-		PageInfo<Article> pageInfo = articleService.getPageInfo(article,pageNum,pageSize);
-		model.addAttribute("pageInfo", pageInfo);
-		List<Channel> channelList = articleService.getChannelList();
-		model.addAttribute("channelList", channelList);
-		return "user/article";
-	}
-	
 	/**
 	 * @Title: isLogin   
 	 * @Description: 验证用户是否登录   
@@ -221,6 +205,38 @@ public class UserController {
 		}
 		return JsonResult.fail(CmsConstant.unLoginErrorCode, "未登录");
 	}
+	
+	@RequestMapping("article")
+	public String article(Article article,Model model,HttpSession session,
+			@RequestParam(value="pageNum",defaultValue="1") int pageNum,@RequestParam(value="pageSize",defaultValue="3") int pageSize) {
+		//设置用户Id
+		User userInfo = (User)session.getAttribute(CmsConstant.UserSessionKey);
+		article.setUserId(userInfo.getId());
+		//查询文章
+		PageInfo<Article> pageInfo = articleService.getPageInfo(article,pageNum,pageSize);
+		model.addAttribute("pageInfo", pageInfo);
+		List<Channel> channelList = articleService.getChannelList();
+		model.addAttribute("channelList", channelList);
+		return "user/article";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
